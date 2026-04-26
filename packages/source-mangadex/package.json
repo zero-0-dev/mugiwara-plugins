@@ -1,0 +1,37 @@
+{
+  "name": "mugiwara-plugin-source-mangadex",
+  "version": "1.0.2",
+  "description": "MangaDex source plugin for Mugiwara manga reader - imports manga from mangadex.org",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "mugiwara",
+    "manga",
+    "source",
+    "mangadex",
+    "plugin",
+    "scraper"
+  ],
+  "author": "Mugiwara Team",
+  "license": "MIT",
+  "mugiwara": {
+    "type": "source",
+    "id": "mangadex",
+    "compatibleCore": "^1.0.0"
+  },
+  "dependencies": {
+    "@mugiwara-manga/plugin-api": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  }
+}
