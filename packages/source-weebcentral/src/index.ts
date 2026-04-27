@@ -177,9 +177,7 @@ class WeebCentralSource extends BaseSource {
     sourceMangaId: string,
     lastChapterId?: string,
   ): Promise<SourceManga["chapters"]> {
-    const rssXml = await this.makeHtmlRequest(
-      `/series/${sourceMangaId}/rss`,
-    );
+    const rssXml = await this.makeHtmlRequest(`/series/${sourceMangaId}/rss`);
 
     const chapters: SourceChapter[] = [];
     let passedLast = !lastChapterId;
@@ -220,7 +218,7 @@ class WeebCentralSource extends BaseSource {
     const results: SearchResult[] = [];
     const $ = cheerio.load(html);
 
-    $('a.line-clamp-1.link.link-hover').each((_, el) => {
+    $("a.line-clamp-1.link.link-hover").each((_, el) => {
       const link = $(el);
       const href = link.attr("href") || "";
       const match = href.match(SERIES_ID_REGEX);
@@ -230,8 +228,11 @@ class WeebCentralSource extends BaseSource {
       const title = link.text().trim() || "Unknown";
       const article = link.parents("article").first();
 
-      const coverSrc = article.find('source[srcset*="cover/normal"]').attr("srcset") || "";
-      const coverIdMatch = coverSrc.match(/cover\/normal\/([A-Za-z0-9]+)\.webp/);
+      const coverSrc =
+        article.find('source[srcset*="cover/normal"]').attr("srcset") || "";
+      const coverIdMatch = coverSrc.match(
+        /cover\/normal\/([A-Za-z0-9]+)\.webp/,
+      );
       const coverImageUrl = coverIdMatch
         ? `https://temp.compsci88.com/cover/normal/${coverIdMatch[1]}.webp`
         : undefined;
@@ -276,18 +277,27 @@ class WeebCentralSource extends BaseSource {
     const descEl = $("p.whitespace-pre-wrap").first();
     const description = descEl.text().trim() || undefined;
 
-    const coverSrc = $('source[srcset*="cover/normal"]').first().attr("srcset") || "";
+    const coverSrc =
+      $('source[srcset*="cover/normal"]').first().attr("srcset") || "";
     const coverIdMatch = coverSrc.match(/cover\/normal\/([A-Za-z0-9]+)\.webp/);
     const coverImageUrl = coverIdMatch
       ? `https://temp.compsci88.com/cover/normal/${coverIdMatch[1]}.webp`
       : undefined;
 
-    const author = $('li:has(strong:contains("Author(s):")) a').first().text().trim() || undefined;
+    const author =
+      $('li:has(strong:contains("Author(s):")) a').first().text().trim() ||
+      undefined;
 
-    const statusText = $('li:has(strong:contains("Status:")) a').first().text().trim();
+    const statusText = $('li:has(strong:contains("Status:")) a')
+      .first()
+      .text()
+      .trim();
     const status = this.mapStatus(statusText);
 
-    const typeText = $('li:has(strong:contains("Type:")) a').first().text().trim();
+    const typeText = $('li:has(strong:contains("Type:")) a')
+      .first()
+      .text()
+      .trim();
     const mediaType = this.mapSeriesType(typeText);
 
     const tags: string[] = [];
@@ -320,7 +330,8 @@ class WeebCentralSource extends BaseSource {
       if (!chapterIdMatch) return;
 
       const sourceChapterId = chapterIdMatch[1];
-      const label = link.find("span.grow span").first().text().trim() || "Unknown";
+      const label =
+        link.find("span.grow span").first().text().trim() || "Unknown";
       const timeEl = link.find("time").first();
       const publishedAt = timeEl.attr("datetime") || undefined;
 
@@ -345,9 +356,9 @@ class WeebCentralSource extends BaseSource {
     const urls: string[] = [];
     const $ = cheerio.load(html);
 
-    $('img[src*="planeptune.us"]').each((_, el) => {
+    $("img[src]").each((_, el) => {
       const src = $(el).attr("src");
-      if (src) urls.push(src);
+      if (src && !src.includes("broken_image")) urls.push(src);
     });
 
     return urls;

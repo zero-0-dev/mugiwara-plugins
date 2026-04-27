@@ -1,6 +1,6 @@
 {
   "name": "mugiwara-plugin-source-weebcentral",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Weeb Central source plugin for Mugiwara manga reader - imports manga from weebcentral.com",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
