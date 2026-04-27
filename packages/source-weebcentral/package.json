@@ -1,0 +1,38 @@
+{
+  "name": "mugiwara-plugin-source-weebcentral",
+  "version": "1.0.0",
+  "description": "Weeb Central source plugin for Mugiwara manga reader - imports manga from weebcentral.com",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "mugiwara",
+    "manga",
+    "source",
+    "weebcentral",
+    "plugin",
+    "scraper"
+  ],
+  "author": "Mugiwara Team",
+  "license": "MIT",
+  "mugiwara": {
+    "type": "source",
+    "id": "weebcentral",
+    "compatibleCore": "^1.0.0"
+  },
+  "dependencies": {
+    "@mugiwara-manga/plugin-api": "^1.0.0",
+    "cheerio": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  }
+}
