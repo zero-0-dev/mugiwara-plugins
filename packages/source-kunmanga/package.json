@@ -1,0 +1,38 @@
+{
+  "name": "mugiwara-plugin-source-kunmanga",
+  "version": "1.0.0",
+  "description": "KunManga source plugin for Mugiwara manga reader - imports manga from kunmanga.co.uk",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "mugiwara",
+    "manga",
+    "source",
+    "kunmanga",
+    "plugin",
+    "scraper"
+  ],
+  "author": "Mugiwara Team",
+  "license": "MIT",
+  "mugiwara": {
+    "type": "source",
+    "id": "kunmanga",
+    "compatibleCore": "^1.0.0"
+  },
+  "dependencies": {
+    "@mugiwara-manga/plugin-api": "^1.0.0",
+    "cheerio": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  }
+}
